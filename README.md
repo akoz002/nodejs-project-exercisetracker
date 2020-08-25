@@ -2,7 +2,9 @@
 
 ### User Stories
 
-1. I can create a user by posting form data `username` to:
+#### 1. Create a user
+
+I can create a user by posting form data `username` to:
 ```
 POST /api/exercise/new-user
 ```
@@ -11,7 +13,9 @@ and returned will be an object with:
 { username: <username>, _id: <_id> }
 ```
 
-2. I can get an array of *all* users by getting:
+#### 2. Get all users
+
+I can get an array of *all* users by getting:
 ```
 GET api/exercise/users
 ```
@@ -24,7 +28,9 @@ with the same info returned as when creating a user, i.e.:
 ]
 ```
 
-3. I can add an exercise to any user by posting form data `userId(_id)`, `description`, `duration` and optionally `date` to: 
+#### 3. Add an exercise
+
+I can add an exercise to any user by posting form data `userId(_id)`, `description`, `duration` and optionally `date` to: 
 ```
 POST /api/exercise/add
 ```
@@ -39,7 +45,9 @@ If no date is supplied it will use the current date. Returned will be the user o
 }
 ```
 
-4. I can retrieve a full exercise log of any user by getting:
+#### 4. Get full exercise log
+
+I can retrieve a full exercise log of any user by getting:
 ```
 GET /api/exercise/log?{userId}
 ```
@@ -57,7 +65,9 @@ with a parameter of `userId(_id)`. Returned will be the user object with the add
 }
 ```
 
-5. I can retrieve a part of the log of any user by also passing along optional parameters of `from`, `to` or `limit` (date format = yyyy-mm-dd, limit = int):
+#### 5. Get partial exercise log
+
+I can retrieve a part of the log of any user by also passing along optional parameters of `from`, `to` or `limit` (date format = yyyy-mm-dd, limit = int):
 ```
 GET /api/exercise/log?{userId}[&from][&to][&limit]
 ```
