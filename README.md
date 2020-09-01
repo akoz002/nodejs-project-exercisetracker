@@ -17,7 +17,7 @@ and returned will be an object with:
 
 I can get an array of *all* users by getting:
 ```
-GET api/exercise/users
+GET /api/exercise/users
 ```
 with the same info returned as when creating a user, i.e.:
 ```
