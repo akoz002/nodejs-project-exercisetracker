@@ -155,13 +155,7 @@ app.get('/api/exercise/log', function(req, res, next) {
   if (req.query.limit) {
     console.log(`Limiting log entries to ${req.query.limit}`);
     aggregate.addFields({
-      log: { $filter: {
-        input: '$log',
-        as: 'entry',
-        cond: { $lt: [
-          { $indexOfArray: [ '$log', '$$entry' ] }, Number(req.query.limit)
-        ]}
-      }}
+      log: { $slice: [ '$log', Number(req.query.limit) ] }
     });
   }
 
