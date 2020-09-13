@@ -20,10 +20,4 @@ const userSchema = new mongoose.Schema({
   log: [exerciseSchema]
 });
 
-/*
- * Create a compound index on user _id and exercise date.
- */
-
-// userSchema.index({ '_id': 1, 'log.date': 1 });
-
 module.exports = userSchema;
