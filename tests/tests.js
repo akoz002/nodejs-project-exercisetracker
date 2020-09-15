@@ -49,26 +49,8 @@ const validateAddExercise = (
   assert.strictEqual(res.data._id, userId);
   assert.strictEqual(res.data.description, description);
   assert.strictEqual(res.data.duration, duration);
-
-  if (date) {
-    assert.strictEqual(res.data.date, date + 'T00:00:00.000Z');
-  }
-  else {
-    // compare against current time +/- 10 seconds
-    const marginSeconds = 10;
-    const responseDate = new Date(res.data.date);
-    const upperLimitDate = new Date(Date.now() + marginSeconds * 1000);
-    const lowerLimitDate = new Date(Date.now() - marginSeconds * 1000);
-
-    assert.ok(responseDate > lowerLimitDate,
-      `Response date '${responseDate.toISOString()}' is less than the current ` +
-      `time minus ${marginSeconds} seconds '${lowerLimitDate.toISOString()}'`
-    );
-    assert.ok(responseDate < upperLimitDate,
-      `Response date '${responseDate.toISOString()}' is greater than the current ` +
-      `time plus ${marginSeconds} seconds '${upperLimitDate.toISOString()}'`
-    );
-  }
+  assert.ok(!isNaN(Date.parse(res.data.date)),
+    `Response date '${res.data.date}' is invalid`);
 
   console.log("Successfully validated adding exercise: \n'%o'", res.data);
 

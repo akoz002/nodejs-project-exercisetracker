@@ -107,9 +107,13 @@ app.post('/api/exercise/add', function(req, res, next) {
       console.log("'%o'", exercise);
 
       // return exercise with username and _id
-      res.json(Object.assign({
-        username: user.username, _id: user._id
-      }, exercise.toObject()));
+      res.json({
+        username: user.username,
+        _id: user._id,
+        description: exercise.desc,
+        duration: exercise.dur,
+        date: exercise.date.toDateString()
+      });
     });
   });
 });
@@ -166,6 +170,11 @@ app.get('/api/exercise/log', function(req, res, next) {
     if (err) return next(err);
     if (result.length === 0) return next({
       status: 404, message: `userId '${req.query.userId}' does not exist in the database`
+    });
+
+    // reformat to date string
+    result[0].log.forEach(entry => {
+       entry.date = entry.date.toDateString();
     });
 
     console.log("Successfully retrieved exercise log for user '%s' (ID '%s')",

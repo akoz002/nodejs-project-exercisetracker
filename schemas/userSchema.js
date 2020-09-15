@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 const exerciseSchema = new mongoose.Schema({
   description: { type: String, required: true, alias: 'desc' },
-  duration: { type: Number, required: true },
+  duration: { type: Number, required: true, alias: 'dur' },
   date: { type: Date, default: Date.now }
 }, { _id: false }); // exercises do not need an _id
 
