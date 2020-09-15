@@ -71,3 +71,21 @@ I can retrieve a part of the log of any user by also passing along optional para
 ```
 GET /api/exercise/log?{userId}[&from][&to][&limit]
 ```
+
+### Implementation
+
+The app is implemented with Node.js, Express and Mongoose/MongoDB. A demo can be found at the link below. The link home page has a couple of web forms to create users and add exercises. 
+
+* https://akoz002-nodejs-exercisetracker.herokuapp.com/
+
+As explained above you can also send requests directly to:
+
+`https://akoz002-nodejs-exercisetracker.herokuapp.com/api/exercise/<operation>`
+
+#### Tests
+
+A set of basic tests can be found at `tests/tests.js`. The tests can be executed by running `npm test` from the root directory.
+
+The `.env` file contains two parameters for configuring the app and the tests. The `APP_URL` is used by the tests to locate the app server. The `DB_URI` is used by the app to locate the MongoDB database server. 
+
+By default the tests will run against the app deployed to the cloud (on Heroku as above), and the app will connect to the cloud database server (on MongoDB Atlas).
