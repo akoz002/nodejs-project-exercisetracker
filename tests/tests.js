@@ -17,6 +17,7 @@ const validateCreateUser = (username, duplicate = false) => axios.post(
   queryString.stringify({ username })
 )
 .then(res => {
+  assert.strictEqual(res.status, 201);
   assert.strictEqual(res.data.username, username);
   assert.ok(res.data._id);
   console.log("Successfully validated creating new user '%s'", res.data.username);
@@ -45,6 +46,7 @@ const validateAddExercise = (
   queryString.stringify({ userId, description, duration, date })
 )
 .then(res => {
+  assert.strictEqual(res.status, 201);
   assert.ok(res.data.username);
   assert.strictEqual(res.data._id, userId);
   assert.strictEqual(res.data.description, description);
@@ -90,6 +92,7 @@ const validateDeleteUser = (
 })
 .then(res => {
   if (validateSuccess) {
+    assert.strictEqual(res.status, 200);
     assert.strictEqual(res.data, `Successfully deleted user '${username}'`);
     console.log("Successfully validated deleting user '%s'", username);
   }
@@ -110,6 +113,7 @@ const validateGetUsers = () => axios.get(
   process.env.APP_URL + 'users'
 )
 .then(res => {
+  assert.strictEqual(res.status, 200);
   testUsers.forEach(testUser => assert.ok(
     res.data.some(responseUser => (
       responseUser.username === testUser.username &&
@@ -132,6 +136,7 @@ const validateExerciseLog = (
   { params: { userId: expectedUser._id, from, to, limit }}
 )
 .then(res => {
+  assert.strictEqual(res.status, 200);
   assert.strictEqual(res.data.username, expectedUser.username);
   assert.strictEqual(res.data._id, expectedUser._id);
   assert.strictEqual(res.data.log.length, expectedLog.length);

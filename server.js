@@ -57,7 +57,7 @@ app.post('/api/exercise/new-user', function(req, res, next) {
   User.create({ username: req.body.username }, function(err, user) {
     if (err) return next(err);
     console.log("Successfully created user '%s'", user.username);
-    res.json({ username: user.username, _id: user._id });
+    res.status(201).json({ username: user.username, _id: user._id });
   });
 });
 
@@ -107,7 +107,7 @@ app.post('/api/exercise/add', function(req, res, next) {
       console.log("'%o'", exercise);
 
       // return exercise with username and _id
-      res.json({
+      res.status(201).json({
         username: user.username,
         _id: user._id,
         description: exercise.desc,
