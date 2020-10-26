@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   font-family:sans-serif;
   margin: 25px;
@@ -10,42 +14,45 @@ body {
   background-color: #f5f5f5;
 }
 
-h1 {
-  font-weight: bold;
-  
-}
-
-.bold {
-  font-weight: bold;
-}
-
-p {
-  max-width: 900px;
+h1, h2, p {
+  text-align: center;
 }
 
 form {
-  margin-bottom: 25px;
   padding: 15px;
   background-color: #87D37C;
-  display: inline-block;
-  width: 100%;
-  max-width: 340px;
+  margin: 1em auto;
+  max-width: 600px;
+  border: 1px solid darkgreen;
   border-radius: 5px;
 }
 
+.input-container {
+  margin: auto;
+  padding: 5px;
+  max-width: 410px;
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  font-weight: bold;
+  padding: 5px;
+}
+
 input {
-  display: block;
-  margin-bottom: 10px;
+  font-size: 1rem;
   padding: 5px;
   width: 100%;
+  max-width: 280px;
   border: 1px solid lightgrey;
   border-radius: 3px;
-  font-size: 16px;
 }
 
 input[type=submit] {
-  font-size: 16px;
-  border-radius: 3px;
+  display: block;
+  max-width: 200px;
+  margin: 10px auto;
   background-color: #E4F1FE;
   border: 1px solid grey;
   box-shadow: 2px 2px #999;
@@ -58,7 +65,22 @@ input[type=submit]:hover {
 
 code {
   font-family: monospace;
-  font-size: 1.2em;
   background-color: #FFFEC4;
-  padding: 2px;
+}
+
+.code-inline {
+  padding: 0.25em;
+}
+
+.code-block {
+  font-size: 0.9rem;
+  list-style-type: none;
+  padding-left: 1em;
+  line-height: 1.5;
+}
+
+.code-block-container {
+  background-color: #FFFEC4;
+  padding: 0.2em 0;
+  border-radius: 6px;
 }

@@ -10,26 +10,36 @@
 
    <body>
       <div class="container">
-         <h1>Exercise tracker</h1>
-          <form action="/api/exercise/new-user" method="post" target="_blank">
-            <h3>Create a New User</h3>
-            <p><code>POST /api/exercise/new-user</code></p>
-            <input id="uname" type="text" name="username" placeholder="username">
-            <input type="submit" value="Submit">
-          </form>
-          <form action="/api/exercise/add" method="post" target="_blank">
-            <h3>Add exercises</h3>
-            <p><code>POST /api/exercise/add</code></p>
-            <input id="uid" type="text" name="userId" placeholder="userId*">
-            <input id="desc" type="text" name="description" placeholder="description*">
-            <input id="dur" type="text" name="duration" placeholder="duration* (mins.)">
-            <input id="dat" type="text" name="date" placeholder="date (yyyy-mm-dd)">
-            <input type="submit" value="Submit">
-          </form>
-          <p><strong>GET users's exercise log: </strong><code>GET /api/exercise/log?{userId}[&amp;from][&amp;to][&amp;limit]</code></p>
-          <p><strong>{ }</strong> = required, <strong>[ ]</strong> = optional</p>
-          <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
+         <h1>Exercise Tracker</h1>
+
+          <!-- React component for creating a new user. -->
+          <div id='create-user-form'></div>
+
+          <!-- React component for adding an exercise. -->
+          <div id='add-exercise-form'></div>
+
+          <!-- React component for getting all users. -->
+          <div id='get-users-form'></div>
+
+          <!-- React component for getting a user's exercise log. -->
+          <div id='get-exercises-form'></div>
+
       </div>
+
+      <!-- Load React. -->
+      <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+
+      <!-- Load Redux. -->
+      <script src="https://unpkg.com/redux@4/dist/redux.min.js" crossorigin></script>
+      <script src="https://unpkg.com/redux-thunk@2.3.0/dist/redux-thunk.min.js" crossorigin></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.1/react-redux.min.js"
+        integrity="sha512-Ae6lzX7eAwqencnyfCtoAf2h3tQhsV5DrHiqExqyjKrxvTgPHwwOlM694naWdO2ChMmBk3by5oM2c3soVPbI5g=="
+        crossorigin="anonymous"></script>
+
+      <!-- Render React components. -->
+      <script type="module" src="renderComponents.js"></script>
+
    </body>
 
 </html>
