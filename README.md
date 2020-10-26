@@ -74,7 +74,7 @@ GET /api/exercise/log?{userId}[&from][&to][&limit]
 
 ### Implementation
 
-The app is implemented with Node.js, Express and Mongoose/MongoDB. A demo can be found at the link below. The link home page has a couple of web forms to create users and add exercises. 
+The app is implemented with Node.js, Express and Mongoose/MongoDB. A demo can be found at the link below. The home page has a few React/Redux web forms to create and get users and exercises. React/Redux source can be found at `views/js/`.
 
 * https://akoz002-nodejs-exercisetracker.herokuapp.com/
 
