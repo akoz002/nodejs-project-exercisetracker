@@ -34,12 +34,28 @@ class CreateUserForm extends React.Component {
   }
 
   render() {
+    let userInfo = null;
+
+    if (this.props.processingRequest) {
+      userInfo = /*#__PURE__*/React.createElement("div", {
+        className: "code-block-container"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "code-block"
+      }, /*#__PURE__*/React.createElement("code", null, "Creating user...")));
+    } else if (this.props.userInfo) {
+      userInfo = /*#__PURE__*/React.createElement("div", {
+        className: "code-block-container"
+      }, /*#__PURE__*/React.createElement(JSONObjectCodeBlock, {
+        object: this.props.userInfo
+      }));
+    }
+
     return /*#__PURE__*/React.createElement("form", {
       onSubmit: this.createUser
     }, /*#__PURE__*/React.createElement("h2", null, "Create a New User"), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("code", {
       className: "code-inline"
     }, "POST /api/exercise/new-user")), /*#__PURE__*/React.createElement("div", {
-      class: "input-container"
+      className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "uname"
     }, "Username:"), /*#__PURE__*/React.createElement("input", {
@@ -52,11 +68,7 @@ class CreateUserForm extends React.Component {
     })), /*#__PURE__*/React.createElement("input", {
       type: "submit",
       value: "Create User"
-    }), this.props.userInfo && /*#__PURE__*/React.createElement("div", {
-      class: "code-block-container"
-    }, /*#__PURE__*/React.createElement(JSONObjectCodeBlock, {
-      object: this.props.userInfo
-    })));
+    }), userInfo);
   }
 
 }
@@ -66,7 +78,8 @@ class CreateUserForm extends React.Component {
 
 
 const ConnectedUserForm = ReactRedux.connect(state => ({
-  userInfo: state.userInfo
+  processingRequest: state.userInfo.processingRequest,
+  userInfo: state.userInfo.receivedData
 }), dispatch => ({
   dispatchCreateUser: username => dispatch(createUserAsync(username))
 }))(CreateUserForm);

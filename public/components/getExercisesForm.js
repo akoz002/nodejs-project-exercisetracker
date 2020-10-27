@@ -60,12 +60,28 @@ class GetExercisesForm extends React.Component {
   }
 
   render() {
+    let exerciseLog = null;
+
+    if (this.props.processingRequest) {
+      exerciseLog = /*#__PURE__*/React.createElement("div", {
+        className: "code-block-container"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "code-block"
+      }, /*#__PURE__*/React.createElement("code", null, "Getting exercises...")));
+    } else if (this.props.exerciseLog) {
+      exerciseLog = /*#__PURE__*/React.createElement("div", {
+        className: "code-block-container"
+      }, /*#__PURE__*/React.createElement(JSONObjectCodeBlock, {
+        object: this.props.exerciseLog
+      }));
+    }
+
     return /*#__PURE__*/React.createElement("form", {
       onSubmit: this.getExerciseLog
     }, /*#__PURE__*/React.createElement("h2", null, "Get a User's Exercise Log"), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("code", {
       className: "code-inline"
     }, "GET /api/exercise/log?", '{userId}', "[&from][&to][&limit]")), /*#__PURE__*/React.createElement("div", {
-      class: "input-container"
+      className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "get-uid"
     }, "UserID:"), /*#__PURE__*/React.createElement("input", {
@@ -76,7 +92,7 @@ class GetExercisesForm extends React.Component {
       value: this.state.userId,
       onChange: this.handleUserId
     })), /*#__PURE__*/React.createElement("div", {
-      class: "input-container"
+      className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "from"
     }, "From:"), /*#__PURE__*/React.createElement("input", {
@@ -85,7 +101,7 @@ class GetExercisesForm extends React.Component {
       value: this.state.from,
       onChange: this.handleFrom
     })), /*#__PURE__*/React.createElement("div", {
-      class: "input-container"
+      className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "to"
     }, "To:"), /*#__PURE__*/React.createElement("input", {
@@ -94,7 +110,7 @@ class GetExercisesForm extends React.Component {
       value: this.state.to,
       onChange: this.handleTo
     })), /*#__PURE__*/React.createElement("div", {
-      class: "input-container"
+      className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "limit"
     }, "Limit:"), /*#__PURE__*/React.createElement("input", {
@@ -106,11 +122,7 @@ class GetExercisesForm extends React.Component {
     })), /*#__PURE__*/React.createElement("input", {
       type: "submit",
       value: "Get Exercise Log"
-    }), this.props.exerciseLog && /*#__PURE__*/React.createElement("div", {
-      class: "code-block-container"
-    }, /*#__PURE__*/React.createElement(JSONObjectCodeBlock, {
-      object: this.props.exerciseLog
-    })));
+    }), exerciseLog);
   }
 
 }
@@ -120,7 +132,8 @@ class GetExercisesForm extends React.Component {
 
 
 const ConnectedGetExercisesForm = ReactRedux.connect(state => ({
-  exerciseLog: state.exerciseLog
+  processingRequest: state.exerciseLog.processingRequest,
+  exerciseLog: state.exerciseLog.receivedData
 }), dispatch => ({
   dispatchGetExercises: (userId, from, to, limit) => dispatch(getExercisesAsync(userId, from, to, limit))
 }))(GetExercisesForm);

@@ -53,18 +53,25 @@ const createUserAsync = username => dispatch => {
 };
 /*
  * Reducer for creating new users.
- *
- * The state is an object representing user info or an error.
  */
 
 
-const createUserReducer = (state = null, action) => {
+const createUserReducer = (state = {
+  processingRequest: false,
+  receivedData: null
+}, action) => {
   switch (action.type) {
     case REQ_CREATE_USER:
-      return state;
+      return {
+        processingRequest: true,
+        receivedData: null
+      };
 
     case REC_CREATE_USER:
-      return action.userInfo;
+      return {
+        processingRequest: false,
+        receivedData: action.userInfo
+      };
 
     default:
       return state;
@@ -106,18 +113,25 @@ const addExerciseAsync = (userId, description, duration, date) => dispatch => {
 };
 /*
  * Reducer for adding exercises.
- *
- * The state is an object representing exercise info.
  */
 
 
-const addExerciseReducer = (state = null, action) => {
+const addExerciseReducer = (state = {
+  processingRequest: false,
+  receivedData: null
+}, action) => {
   switch (action.type) {
     case REQ_ADD_EXERCISE:
-      return state;
+      return {
+        processingRequest: true,
+        receivedData: null
+      };
 
     case REC_ADD_EXERCISE:
-      return action.exerciseInfo;
+      return {
+        processingRequest: false,
+        receivedData: action.exerciseInfo
+      };
 
     default:
       return state;
@@ -128,25 +142,43 @@ const addExerciseReducer = (state = null, action) => {
  */
 
 
+const REQ_GET_USERS = 'REQUESTED_GET_USERS';
 const REC_GET_USERS = 'RECEIVED_GET_USERS';
+
+const reqGetUsers = () => ({
+  type: REQ_GET_USERS
+});
 
 const recGetUsers = allUsersArray => ({
   type: REC_GET_USERS,
   allUsersArray
 });
 
-const getUsersAsync = () => dispatch => fetch('/api/exercise/users').then(res => processResponse(res, dispatch, recGetUsers)).catch(err => console.error(err));
+const getUsersAsync = () => dispatch => {
+  dispatch(reqGetUsers());
+  fetch('/api/exercise/users').then(res => processResponse(res, dispatch, recGetUsers)).catch(err => console.error(err));
+};
 /*
  * Reducer for getting all users.
- *
- * The state is an array with user info.
  */
 
 
-const getUsersReducer = (state = null, action) => {
+const getUsersReducer = (state = {
+  processingRequest: false,
+  receivedData: null
+}, action) => {
   switch (action.type) {
+    case REQ_GET_USERS:
+      return {
+        processingRequest: true,
+        receivedData: null
+      };
+
     case REC_GET_USERS:
-      return action.allUsersArray;
+      return {
+        processingRequest: false,
+        receivedData: action.allUsersArray
+      };
 
     default:
       return state;
@@ -157,7 +189,12 @@ const getUsersReducer = (state = null, action) => {
  */
 
 
+const REQ_GET_EXERCISES = 'REQUESTED_GET_EXERCISES';
 const REC_GET_EXERCISES = 'RECEIVED_GET_EXERCISES';
+
+const reqGetExercises = () => ({
+  type: REQ_GET_EXERCISES
+});
 
 const recGetExercises = exerciseLog => ({
   type: REC_GET_EXERCISES,
@@ -165,6 +202,7 @@ const recGetExercises = exerciseLog => ({
 });
 
 const getExercisesAsync = (userId, from, to, limit) => dispatch => {
+  dispatch(reqGetExercises());
   const params = new URLSearchParams({
     userId
   });
@@ -175,15 +213,25 @@ const getExercisesAsync = (userId, from, to, limit) => dispatch => {
 };
 /*
  * Reducer for getting a user's exercise log.
- *
- * The state is an object with user info and the exercise log.
  */
 
 
-const getExercisesReducer = (state = null, action) => {
+const getExercisesReducer = (state = {
+  processingRequest: false,
+  receivedData: null
+}, action) => {
   switch (action.type) {
+    case REQ_GET_EXERCISES:
+      return {
+        processingRequest: true,
+        receivedData: null
+      };
+
     case REC_GET_EXERCISES:
-      return action.exerciseLog;
+      return {
+        processingRequest: false,
+        receivedData: action.exerciseLog
+      };
 
     default:
       return state;

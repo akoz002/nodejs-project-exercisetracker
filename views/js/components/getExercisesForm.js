@@ -69,6 +69,22 @@ class GetExercisesForm extends React.Component {
   }
 
   render() {
+    let exerciseLog = null;
+    if (this.props.processingRequest) {
+      exerciseLog = (
+        <div className='code-block-container'>
+          <p className='code-block'><code>Getting exercises...</code></p>
+        </div>
+      );
+    }
+    else if (this.props.exerciseLog) {
+      exerciseLog = (
+        <div className='code-block-container'>
+          <JSONObjectCodeBlock object={this.props.exerciseLog} />
+        </div>
+      );
+    }
+
     return (
       <form onSubmit={this.getExerciseLog}>
         <h2>Get a User's Exercise Log</h2>
@@ -76,25 +92,25 @@ class GetExercisesForm extends React.Component {
           GET /api/exercise/log?{'{userId}'}[&amp;from][&amp;to][&amp;limit]
         </code></p>
 
-        <div class='input-container'>
+        <div className='input-container'>
           <label for='get-uid'>UserID:</label>
           <input id='get-uid' type="text" placeholder="userId*" required
             value={this.state.userId} onChange={this.handleUserId} />
         </div>
 
-        <div class='input-container'>
+        <div className='input-container'>
           <label for='from'>From:</label>
           <input id='from' type="date"
             value={this.state.from} onChange={this.handleFrom} />
         </div>
 
-        <div class='input-container'>
+        <div className='input-container'>
           <label for='to'>To:</label>
           <input id='to' type="date"
             value={this.state.to} onChange={this.handleTo} />
         </div>
 
-        <div class='input-container'>
+        <div className='input-container'>
           <label for='limit'>Limit:</label>
           <input id='limit' type="number" placeholder="No. of entries"
             value={this.state.limit} onChange={this.handleLimit} />
@@ -102,12 +118,7 @@ class GetExercisesForm extends React.Component {
 
         <input type="submit" value="Get Exercise Log" />
 
-        {
-          this.props.exerciseLog &&
-          <div class='code-block-container'>
-            <JSONObjectCodeBlock object={this.props.exerciseLog} />
-          </div>
-        }
+        {exerciseLog}
 
       </form>
     );
@@ -120,7 +131,8 @@ class GetExercisesForm extends React.Component {
 
 const ConnectedGetExercisesForm = ReactRedux.connect(
   state => ({
-    exerciseLog: state.exerciseLog
+    processingRequest: state.exerciseLog.processingRequest,
+    exerciseLog: state.exerciseLog.receivedData
   }),
   dispatch => ({
     dispatchGetExercises: (userId, from, to, limit) =>

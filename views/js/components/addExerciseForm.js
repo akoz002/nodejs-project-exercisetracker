@@ -70,30 +70,46 @@ class AddExerciseForm extends React.Component {
   }
 
   render() {
+    let exerciseInfo = null;
+    if (this.props.processingRequest) {
+      exerciseInfo = (
+        <div className='code-block-container'>
+          <p className='code-block'><code>Adding exercise...</code></p>
+        </div>
+      );
+    }
+    else if (this.props.exerciseInfo) {
+      exerciseInfo = (
+        <div className='code-block-container'>
+          <JSONObjectCodeBlock object={this.props.exerciseInfo} />
+        </div>
+      );
+    }
+
     return (
       <form onSubmit={this.addExercise}>
         <h2>Add a New Exercise</h2>
         <p><code className='code-inline'>POST /api/exercise/add</code></p>
 
-        <div class='input-container'>
+        <div className='input-container'>
           <label for='add-uid'>UserID:</label>
           <input id='add-uid' type="text" placeholder="userId*" required
             value={this.state.userId} onChange={this.handleUserId} />
         </div>
 
-        <div class='input-container'>
+        <div className='input-container'>
           <label for='desc'>Description:</label>
           <input id='desc' type="text" placeholder="description*" required
             value={this.state.description} onChange={this.handleDesc} />
         </div>
 
-        <div class='input-container'>
+        <div className='input-container'>
           <label for='dur'>Duration:</label>
           <input id='dur' type="number" placeholder="duration* (mins.)" required
             value={this.state.duration} onChange={this.handleDur} />
         </div>
 
-        <div class='input-container'>
+        <div className='input-container'>
           <label for='date'>Date:</label>
           <input id='date' type="date"
             value={this.state.date} onChange={this.handleDate} />
@@ -101,12 +117,8 @@ class AddExerciseForm extends React.Component {
 
         <input type="submit" value="Add Exercise" />
 
-        {
-          this.props.exerciseInfo &&
-          <div class='code-block-container'>
-            <JSONObjectCodeBlock object={this.props.exerciseInfo} />
-          </div>
-        }
+        {exerciseInfo}
+
       </form>
     );
   }
@@ -118,7 +130,8 @@ class AddExerciseForm extends React.Component {
 
 const ConnectedAddExerciseForm = ReactRedux.connect(
   state => ({
-    exerciseInfo: state.exerciseInfo
+    processingRequest: state.exerciseInfo.processingRequest,
+    exerciseInfo: state.exerciseInfo.receivedData
   }),
   dispatch => ({
     dispatchAddExercise: (userId, description, duration, date) =>

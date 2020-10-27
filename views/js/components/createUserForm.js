@@ -37,25 +37,36 @@ class CreateUserForm extends React.Component {
   }
 
   render() {
+    let userInfo = null;
+    if (this.props.processingRequest) {
+      userInfo = (
+        <div className='code-block-container'>
+          <p className='code-block'><code>Creating user...</code></p>
+        </div>
+      );
+    }
+    else if (this.props.userInfo) {
+      userInfo = (
+        <div className='code-block-container'>
+          <JSONObjectCodeBlock object={this.props.userInfo} />
+        </div>
+      );
+    }
+
     return (
       <form onSubmit={this.createUser}>
         <h2>Create a New User</h2>
         <p><code className='code-inline'>POST /api/exercise/new-user</code></p>
 
-        <div class='input-container'>
+        <div className='input-container'>
           <label for='uname'>Username:</label>
           <input id='uname' type="text" placeholder="username*" required
             value={this.state.input} onChange={this.handleChange} />
         </div>
-
         <input type="submit" value="Create User" />
 
-        {
-          this.props.userInfo &&
-          <div class='code-block-container'>
-            <JSONObjectCodeBlock object={this.props.userInfo} />
-          </div>
-        }
+        {userInfo}
+
       </form>
     );
   }
@@ -67,7 +78,8 @@ class CreateUserForm extends React.Component {
 
 const ConnectedUserForm = ReactRedux.connect(
   state => ({
-    userInfo: state.userInfo
+    processingRequest: state.userInfo.processingRequest,
+    userInfo: state.userInfo.receivedData
   }),
   dispatch => ({
     dispatchCreateUser: username => dispatch(createUserAsync(username))

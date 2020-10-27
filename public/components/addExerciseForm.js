@@ -61,12 +61,28 @@ class AddExerciseForm extends React.Component {
   }
 
   render() {
+    let exerciseInfo = null;
+
+    if (this.props.processingRequest) {
+      exerciseInfo = /*#__PURE__*/React.createElement("div", {
+        className: "code-block-container"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "code-block"
+      }, /*#__PURE__*/React.createElement("code", null, "Adding exercise...")));
+    } else if (this.props.exerciseInfo) {
+      exerciseInfo = /*#__PURE__*/React.createElement("div", {
+        className: "code-block-container"
+      }, /*#__PURE__*/React.createElement(JSONObjectCodeBlock, {
+        object: this.props.exerciseInfo
+      }));
+    }
+
     return /*#__PURE__*/React.createElement("form", {
       onSubmit: this.addExercise
     }, /*#__PURE__*/React.createElement("h2", null, "Add a New Exercise"), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("code", {
       className: "code-inline"
     }, "POST /api/exercise/add")), /*#__PURE__*/React.createElement("div", {
-      class: "input-container"
+      className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "add-uid"
     }, "UserID:"), /*#__PURE__*/React.createElement("input", {
@@ -77,7 +93,7 @@ class AddExerciseForm extends React.Component {
       value: this.state.userId,
       onChange: this.handleUserId
     })), /*#__PURE__*/React.createElement("div", {
-      class: "input-container"
+      className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "desc"
     }, "Description:"), /*#__PURE__*/React.createElement("input", {
@@ -88,7 +104,7 @@ class AddExerciseForm extends React.Component {
       value: this.state.description,
       onChange: this.handleDesc
     })), /*#__PURE__*/React.createElement("div", {
-      class: "input-container"
+      className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "dur"
     }, "Duration:"), /*#__PURE__*/React.createElement("input", {
@@ -99,7 +115,7 @@ class AddExerciseForm extends React.Component {
       value: this.state.duration,
       onChange: this.handleDur
     })), /*#__PURE__*/React.createElement("div", {
-      class: "input-container"
+      className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "date"
     }, "Date:"), /*#__PURE__*/React.createElement("input", {
@@ -110,11 +126,7 @@ class AddExerciseForm extends React.Component {
     })), /*#__PURE__*/React.createElement("input", {
       type: "submit",
       value: "Add Exercise"
-    }), this.props.exerciseInfo && /*#__PURE__*/React.createElement("div", {
-      class: "code-block-container"
-    }, /*#__PURE__*/React.createElement(JSONObjectCodeBlock, {
-      object: this.props.exerciseInfo
-    })));
+    }), exerciseInfo);
   }
 
 }
@@ -124,7 +136,8 @@ class AddExerciseForm extends React.Component {
 
 
 const ConnectedAddExerciseForm = ReactRedux.connect(state => ({
-  exerciseInfo: state.exerciseInfo
+  processingRequest: state.exerciseInfo.processingRequest,
+  exerciseInfo: state.exerciseInfo.receivedData
 }), dispatch => ({
   dispatchAddExercise: (userId, description, duration, date) => dispatch(addExerciseAsync(userId, description, duration, date))
 }))(AddExerciseForm);
