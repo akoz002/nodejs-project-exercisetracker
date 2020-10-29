@@ -17,35 +17,14 @@ class GetExercisesForm extends React.Component {
       limit: ''
     };
 
-    this.handleUserId = this.handleUserId.bind(this);
-    this.handleFrom = this.handleFrom.bind(this);
-    this.handleTo = this.handleTo.bind(this);
-    this.handleLimit = this.handleLimit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.getExerciseLog = this.getExerciseLog.bind(this);
   }
 
-  // 'onChange' handlers for input fields
-  handleUserId(e) {
+  // 'onChange' handler
+  handleChange({ target }) {
     this.setState({
-      userId: e.target.value
-    });
-  }
-
-  handleFrom(e) {
-    this.setState({
-      from: e.target.value
-    });
-  }
-
-  handleTo(e) {
-    this.setState({
-      to: e.target.value
-    });
-  }
-
-  handleLimit(e) {
-    this.setState({
-      limit: e.target.value
+      [target.name]: target.value
     });
   }
 
@@ -94,26 +73,26 @@ class GetExercisesForm extends React.Component {
 
         <div className='input-container'>
           <label for='get-uid'>UserID:</label>
-          <input id='get-uid' type="text" placeholder="userId*" required
-            value={this.state.userId} onChange={this.handleUserId} />
+          <input id='get-uid' name='userId' type="text" placeholder="userId*"
+            required value={this.state.userId} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
           <label for='from'>From:</label>
-          <input id='from' type="date"
-            value={this.state.from} onChange={this.handleFrom} />
+          <input id='from' name='from' type="date"
+            value={this.state.from} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
           <label for='to'>To:</label>
-          <input id='to' type="date"
-            value={this.state.to} onChange={this.handleTo} />
+          <input id='to' name='to' type="date"
+            value={this.state.to} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
           <label for='limit'>Limit:</label>
-          <input id='limit' type="number" placeholder="No. of entries"
-            value={this.state.limit} onChange={this.handleLimit} />
+          <input id='limit' name='limit' type="number" placeholder="No. of entries"
+            value={this.state.limit} onChange={this.handleChange} />
         </div>
 
         <input type="submit" value="Get Exercise Log" />

@@ -15,35 +15,16 @@ class GetExercisesForm extends React.Component {
       to: '',
       limit: ''
     };
-    this.handleUserId = this.handleUserId.bind(this);
-    this.handleFrom = this.handleFrom.bind(this);
-    this.handleTo = this.handleTo.bind(this);
-    this.handleLimit = this.handleLimit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.getExerciseLog = this.getExerciseLog.bind(this);
-  } // 'onChange' handlers for input fields
+  } // 'onChange' handler
 
 
-  handleUserId(e) {
+  handleChange({
+    target
+  }) {
     this.setState({
-      userId: e.target.value
-    });
-  }
-
-  handleFrom(e) {
-    this.setState({
-      from: e.target.value
-    });
-  }
-
-  handleTo(e) {
-    this.setState({
-      to: e.target.value
-    });
-  }
-
-  handleLimit(e) {
-    this.setState({
-      limit: e.target.value
+      [target.name]: target.value
     });
   } // 'onSubmit' handler
 
@@ -86,39 +67,43 @@ class GetExercisesForm extends React.Component {
       for: "get-uid"
     }, "UserID:"), /*#__PURE__*/React.createElement("input", {
       id: "get-uid",
+      name: "userId",
       type: "text",
       placeholder: "userId*",
       required: true,
       value: this.state.userId,
-      onChange: this.handleUserId
+      onChange: this.handleChange
     })), /*#__PURE__*/React.createElement("div", {
       className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "from"
     }, "From:"), /*#__PURE__*/React.createElement("input", {
       id: "from",
+      name: "from",
       type: "date",
       value: this.state.from,
-      onChange: this.handleFrom
+      onChange: this.handleChange
     })), /*#__PURE__*/React.createElement("div", {
       className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "to"
     }, "To:"), /*#__PURE__*/React.createElement("input", {
       id: "to",
+      name: "to",
       type: "date",
       value: this.state.to,
-      onChange: this.handleTo
+      onChange: this.handleChange
     })), /*#__PURE__*/React.createElement("div", {
       className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "limit"
     }, "Limit:"), /*#__PURE__*/React.createElement("input", {
       id: "limit",
+      name: "limit",
       type: "number",
       placeholder: "No. of entries",
       value: this.state.limit,
-      onChange: this.handleLimit
+      onChange: this.handleChange
     })), /*#__PURE__*/React.createElement("input", {
       type: "submit",
       value: "Get Exercise Log"

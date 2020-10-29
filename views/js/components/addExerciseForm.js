@@ -17,35 +17,14 @@ class AddExerciseForm extends React.Component {
       date: ''
     };
 
-    this.handleUserId = this.handleUserId.bind(this);
-    this.handleDesc = this.handleDesc.bind(this);
-    this.handleDur = this.handleDur.bind(this);
-    this.handleDate = this.handleDate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.addExercise = this.addExercise.bind(this);
   }
 
-  // 'onChange' handlers for the input fields
-  handleUserId(e) {
+  // 'onChange' handler
+  handleChange({ target }) {
     this.setState({
-      userId: e.target.value
-    });
-  }
-
-  handleDesc(e) {
-    this.setState({
-      description: e.target.value
-    });
-  }
-
-  handleDur(e) {
-    this.setState({
-      duration: e.target.value
-    });
-  }
-
-  handleDate(e) {
-    this.setState({
-      date: e.target.value
+      [target.name]: target.value
     });
   }
 
@@ -93,26 +72,26 @@ class AddExerciseForm extends React.Component {
 
         <div className='input-container'>
           <label for='add-uid'>UserID:</label>
-          <input id='add-uid' type="text" placeholder="userId*" required
-            value={this.state.userId} onChange={this.handleUserId} />
+          <input id='add-uid' name='userId' type="text" placeholder="userId*"
+            required value={this.state.userId} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
           <label for='desc'>Description:</label>
-          <input id='desc' type="text" placeholder="description*" required
-            value={this.state.description} onChange={this.handleDesc} />
+          <input id='desc' name='description' type="text" placeholder="description*"
+            required value={this.state.description} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
           <label for='dur'>Duration:</label>
-          <input id='dur' type="number" placeholder="duration* (mins.)" required
-            value={this.state.duration} onChange={this.handleDur} />
+          <input id='dur' name='duration' type="number" placeholder="duration* (mins.)"
+            required value={this.state.duration} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
           <label for='date'>Date:</label>
-          <input id='date' type="date"
-            value={this.state.date} onChange={this.handleDate} />
+          <input id='date' name='date' type="date"
+            value={this.state.date} onChange={this.handleChange} />
         </div>
 
         <input type="submit" value="Add Exercise" />

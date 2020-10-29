@@ -15,35 +15,16 @@ class AddExerciseForm extends React.Component {
       duration: '',
       date: ''
     };
-    this.handleUserId = this.handleUserId.bind(this);
-    this.handleDesc = this.handleDesc.bind(this);
-    this.handleDur = this.handleDur.bind(this);
-    this.handleDate = this.handleDate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.addExercise = this.addExercise.bind(this);
-  } // 'onChange' handlers for the input fields
+  } // 'onChange' handler
 
 
-  handleUserId(e) {
+  handleChange({
+    target
+  }) {
     this.setState({
-      userId: e.target.value
-    });
-  }
-
-  handleDesc(e) {
-    this.setState({
-      description: e.target.value
-    });
-  }
-
-  handleDur(e) {
-    this.setState({
-      duration: e.target.value
-    });
-  }
-
-  handleDate(e) {
-    this.setState({
-      date: e.target.value
+      [target.name]: target.value
     });
   } // 'onSubmit' handler
 
@@ -87,42 +68,46 @@ class AddExerciseForm extends React.Component {
       for: "add-uid"
     }, "UserID:"), /*#__PURE__*/React.createElement("input", {
       id: "add-uid",
+      name: "userId",
       type: "text",
       placeholder: "userId*",
       required: true,
       value: this.state.userId,
-      onChange: this.handleUserId
+      onChange: this.handleChange
     })), /*#__PURE__*/React.createElement("div", {
       className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "desc"
     }, "Description:"), /*#__PURE__*/React.createElement("input", {
       id: "desc",
+      name: "description",
       type: "text",
       placeholder: "description*",
       required: true,
       value: this.state.description,
-      onChange: this.handleDesc
+      onChange: this.handleChange
     })), /*#__PURE__*/React.createElement("div", {
       className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "dur"
     }, "Duration:"), /*#__PURE__*/React.createElement("input", {
       id: "dur",
+      name: "duration",
       type: "number",
       placeholder: "duration* (mins.)",
       required: true,
       value: this.state.duration,
-      onChange: this.handleDur
+      onChange: this.handleChange
     })), /*#__PURE__*/React.createElement("div", {
       className: "input-container"
     }, /*#__PURE__*/React.createElement("label", {
       for: "date"
     }, "Date:"), /*#__PURE__*/React.createElement("input", {
       id: "date",
+      name: "date",
       type: "date",
       value: this.state.date,
-      onChange: this.handleDate
+      onChange: this.handleChange
     })), /*#__PURE__*/React.createElement("input", {
       type: "submit",
       value: "Add Exercise"
