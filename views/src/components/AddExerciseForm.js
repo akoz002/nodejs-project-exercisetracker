@@ -1,7 +1,8 @@
-'use strict';
 
-import { addExerciseAsync, store } from './redux.js';
-import { JSONObjectCodeBlock } from './jsonDisplays.js';
+import React from 'react';
+import { connect } from 'react-redux';
+import { addExerciseAsync } from '../redux/actions';
+import { JSONObjectCodeBlock } from './JSONDisplays';
 
 /*
  * Form to add an exercise.
@@ -107,7 +108,7 @@ class AddExerciseForm extends React.Component {
  * Connect component to the Redux store.
  */
 
-const ConnectedAddExerciseForm = ReactRedux.connect(
+const ConnectedAddExerciseForm = connect(
   state => ({
     processingRequest: state.exerciseInfo.processingRequest,
     exerciseInfo: state.exerciseInfo.receivedData
@@ -118,12 +119,4 @@ const ConnectedAddExerciseForm = ReactRedux.connect(
   })
 )(AddExerciseForm);
 
-/*
- * Export wrapped component.
- */
-
-export default (
-  <ReactRedux.Provider store={store}>
-    <ConnectedAddExerciseForm />
-  </ReactRedux.Provider>
-);
+export default ConnectedAddExerciseForm;

@@ -1,4 +1,5 @@
-'use strict';
+
+import React from 'react';
 
 /*
  * React components for displaying JSON in code blocks.
@@ -8,7 +9,7 @@
  * Returns a JSON key/value list element.
  */
 
-const JSONKeyValue = ({ attr, value, index, length }) => {
+export const JSONKeyValue = ({ attr, value, index, length }) => {
   // add double quotes for strings
   let formattedValue = typeof value === "string" ? `"${value}"` : `${value}`;
 
@@ -24,7 +25,7 @@ const JSONKeyValue = ({ attr, value, index, length }) => {
  * Returns a JSON object in a code-block.
  */
 
-const JSONObjectCodeBlock = ({ object, appendComma }) => (
+export const JSONObjectCodeBlock = ({ object, appendComma }) => (
   <ul className='code-block' style={
     Object.keys(object).includes('errorMessage') ? { color: 'crimson' } : {}
   }>
@@ -48,7 +49,7 @@ const JSONObjectCodeBlock = ({ object, appendComma }) => (
  * Returns a JSON array (of objects) in a code-block.
  */
 
-const JSONArrayCodeBlock = ({ attr, array, appendComma }) => (
+export const JSONArrayCodeBlock = ({ attr, array, appendComma }) => (
   <ul className='code-block' style={attr ? { 'padding-left': 0 } : {}}>
       <li><code>{attr ? `"${attr}": [` : '['}</code></li>
       {array.map((obj, index, array) =>
@@ -57,5 +58,3 @@ const JSONArrayCodeBlock = ({ attr, array, appendComma }) => (
       <li><code>{appendComma ? '],' : ']'}</code></li>
   </ul>
 );
-
-export { JSONKeyValue, JSONObjectCodeBlock, JSONArrayCodeBlock };

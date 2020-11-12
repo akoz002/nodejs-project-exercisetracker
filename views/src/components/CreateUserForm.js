@@ -1,7 +1,8 @@
-'use strict';
 
-import { createUserAsync, store } from './redux.js';
-import { JSONObjectCodeBlock } from './jsonDisplays.js';
+import React from 'react';
+import { connect } from 'react-redux';
+import { createUserAsync } from '../redux/actions';
+import { JSONObjectCodeBlock } from './JSONDisplays';
 
 /*
  * Form to create a new user.
@@ -76,7 +77,7 @@ class CreateUserForm extends React.Component {
  * Connect form to the Redux store.
  */
 
-const ConnectedUserForm = ReactRedux.connect(
+const ConnectedCreateUserForm = connect(
   state => ({
     processingRequest: state.userInfo.processingRequest,
     userInfo: state.userInfo.receivedData
@@ -86,12 +87,4 @@ const ConnectedUserForm = ReactRedux.connect(
   })
 )(CreateUserForm);
 
-/*
- * Export wrapped component.
- */
-
-export default (
-  <ReactRedux.Provider store={store}>
-    <ConnectedUserForm />
-  </ReactRedux.Provider>
-);
+export default ConnectedCreateUserForm;

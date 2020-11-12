@@ -5,17 +5,16 @@
 	"main": "server.js",
 	"scripts": {
 		"start": "node --unhandled-rejections=strict --no-deprecation server.js",
-		"test": "node --unhandled-rejections=strict tests/tests.js"
+		"test": "node --unhandled-rejections=strict tests/tests.js",
+		"build": "rm -fr public && parcel build views/src/index.html -d public"
 	},
 	"dependencies": {
-		"axios": "^0.20.0",
 		"body-parser": "^1.15.2",
 		"cors": "^2.8.1",
 		"dotenv": "^8.2.0",
 		"express": "^4.14.0",
 		"mongodb": "^3.6.2",
-		"mongoose": "^5.10.9",
-		"querystring": "^0.2.0"
+		"mongoose": "^5.10.9"
 	},
 	"repository": {
 		"type": "git",
@@ -28,8 +27,13 @@
 		"mongoose"
 	],
 	"devDependencies": {
-		"@babel/cli": "^7.12.1",
-		"@babel/core": "^7.12.3",
-		"@babel/preset-react": "^7.12.1"
+		"axios": "^0.20.0",
+		"parcel-bundler": "^1.12.4",
+		"querystring": "^0.2.0",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-redux": "^7.2.2",
+		"redux": "^4.0.5",
+		"redux-thunk": "^2.3.0"
 	}
 }

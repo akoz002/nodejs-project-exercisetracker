@@ -1,7 +1,8 @@
-'use strict';
 
-import { getUsersAsync, store } from './redux.js';
-import { JSONArrayCodeBlock } from './jsonDisplays.js';
+import React from 'react';
+import { connect } from 'react-redux';
+import { getUsersAsync } from '../redux/actions';
+import { JSONArrayCodeBlock } from './JSONDisplays';
 
 /*
  * Form to get all users.
@@ -43,7 +44,7 @@ const GetUsersForm = ({
  * Connect component to the Redux store.
  */
 
-const ConnectedUsersForm = ReactRedux.connect(
+const ConnectedGetUsersForm = connect(
   state => ({
     processingRequest: state.allUsersArray.processingRequest,
     allUsersArray: state.allUsersArray.receivedData
@@ -53,12 +54,4 @@ const ConnectedUsersForm = ReactRedux.connect(
   })
 )(GetUsersForm);
 
-/*
- * Export wrapped component.
- */
-
-export default (
-  <ReactRedux.Provider store={store}>
-    <ConnectedUsersForm />
-  </ReactRedux.Provider>
-);
+export default ConnectedGetUsersForm;
