@@ -3,33 +3,47 @@
   box-sizing: border-box;
 }
 
+:root {
+  --background-yellow: #FFFEC4;
+  --background-green: #87D37C;
+  --background-gray: #f5f5f5;
+  --input-padding: 0.3rem;
+  --button-padding: 0.4rem;
+  --form-border-radius: 0.4rem;
+}
+
 html {
+  font-family: sans-serif;
   font-size: 16px;
+  min-width: 320px;
 }
 
 body {
-  font-family:sans-serif;
-  margin: 25px;
+  margin: 1rem;
   color: #222;
-  background-color: #f5f5f5;
+  background-color: var(--background-gray);
 }
 
 h1, h2, p {
   text-align: center;
 }
 
-form {
-  padding: 15px;
-  background-color: #87D37C;
-  margin: 1em auto;
-  max-width: 600px;
-  border: 1px solid darkgreen;
-  border-radius: 5px;
+p {
+  margin: 1.45rem 0;
 }
 
-.input-container {
-  margin: auto;
-  padding: 5px;
+form {
+  padding: 0 1rem;
+  background-color: var(--background-green);
+  margin: 1rem auto;
+  max-width: 600px;
+  border: 1px solid darkgreen;
+  border-radius: var(--form-border-radius);
+}
+
+/* Contains a <label> and an <input> field. */
+div.input-container {
+  margin: 0.5rem auto;
   max-width: 410px;
   display: flex;
   justify-content: space-between;
@@ -37,22 +51,23 @@ form {
 
 label {
   font-weight: bold;
-  padding: 5px;
+  padding: var(--input-padding);
 }
 
 input {
   font-size: 1rem;
-  padding: 5px;
-  width: 100%;
+  padding: var(--input-padding);
+  width: 60%;
   max-width: 280px;
   border: 1px solid lightgrey;
-  border-radius: 3px;
+  border-radius: 0.2em;
 }
 
 input[type=submit] {
   display: block;
+  padding: var(--button-padding);
   max-width: 200px;
-  margin: 10px auto;
+  margin: 1.2em auto;
   background-color: #E4F1FE;
   border: 1px solid grey;
   box-shadow: 2px 2px #999;
@@ -60,16 +75,23 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #FFFEC4;
+  background-color: var(--background-yellow);
 }
 
 code {
   font-family: monospace;
-  background-color: #FFFEC4;
+  background-color: var(--background-yellow);
 }
 
 .code-inline {
   padding: 0.25em;
+}
+
+.code-block-container {
+  background-color: var(--background-yellow);
+  padding: 0.2rem 0;
+  margin: 1rem 0;
+  border-radius: var(--form-border-radius);
 }
 
 .code-block {
@@ -79,8 +101,16 @@ code {
   line-height: 1.5;
 }
 
-.code-block-container {
-  background-color: #FFFEC4;
-  padding: 0.2em 0;
-  border-radius: 6px;
+/*** Media Queries ***/
+
+@media (max-width: 425px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 370px) {
+  html {
+    font-size: 12px;
+  }
 }

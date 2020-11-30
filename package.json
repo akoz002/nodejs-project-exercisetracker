@@ -6,7 +6,8 @@
 	"scripts": {
 		"start": "node --unhandled-rejections=strict --no-deprecation server.js",
 		"test": "node --unhandled-rejections=strict tests/tests.js",
-		"build": "rm -fr public && parcel build views/src/index.html -d public"
+		"build": "rm -fr public && parcel build views/src/index.html -d public",
+		"parcel": "parcel watch views/src/index.html -d public"
 	},
 	"dependencies": {
 		"body-parser": "^1.15.2",
