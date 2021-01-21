@@ -73,25 +73,25 @@ class GetExercisesForm extends React.Component {
         </code></p>
 
         <div className='input-container'>
-          <label for='get-uid'>UserID:</label>
+          <label htmlFor='get-uid'>UserID:</label>
           <input id='get-uid' name='userId' type="text" placeholder="userId*"
             required value={this.state.userId} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
-          <label for='from'>From:</label>
+          <label htmlFor='from'>From:</label>
           <input id='from' name='from' type="date"
             value={this.state.from} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
-          <label for='to'>To:</label>
+          <label htmlFor='to'>To:</label>
           <input id='to' name='to' type="date"
             value={this.state.to} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
-          <label for='limit'>Limit:</label>
+          <label htmlFor='limit'>Limit:</label>
           <input id='limit' name='limit' type="number" placeholder="No. of entries"
             value={this.state.limit} onChange={this.handleChange} />
         </div>

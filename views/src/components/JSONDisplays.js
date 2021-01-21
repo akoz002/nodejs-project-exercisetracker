@@ -50,7 +50,7 @@ export const JSONObjectCodeBlock = ({ object, appendComma }) => (
  */
 
 export const JSONArrayCodeBlock = ({ attr, array, appendComma }) => (
-  <ul className='code-block' style={attr ? { 'padding-left': 0 } : {}}>
+  <ul className='code-block' style={attr ? { 'paddingLeft': 0 } : {}}>
       <li><code>{attr ? `"${attr}": [` : '['}</code></li>
       {array.map((obj, index, array) =>
         <JSONObjectCodeBlock key={index} object={obj}

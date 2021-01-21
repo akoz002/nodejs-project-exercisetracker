@@ -8,18 +8,17 @@
   --background-green: #87D37C;
   --background-gray: #f5f5f5;
   --input-padding: 0.3rem;
-  --button-padding: 0.4rem;
-  --form-border-radius: 0.4rem;
+  --button-padding: 0.5em 0.4em 0.4em;
+  --form-border-radius: 0.4em;
 }
 
 html {
   font-family: sans-serif;
-  font-size: 16px;
   min-width: 320px;
 }
 
 body {
-  margin: 1rem;
+  margin: 1em;
   color: #222;
   background-color: var(--background-gray);
 }
@@ -29,11 +28,11 @@ h1, h2, p {
 }
 
 p {
-  margin: 1.45rem 0;
+  margin: 1.45em 0;
 }
 
 footer {
-  padding: 0 1rem;
+  padding: 0 1em;
 }
 
 a {
@@ -45,18 +44,18 @@ a:visited {
 }
 
 form {
-  padding: 0 1rem;
+  padding: 0 1em;
   background-color: var(--background-green);
-  margin: 1rem auto;
-  max-width: 600px;
+  margin: 1em auto;
+  max-width: 38em;
   border: 1px solid darkgreen;
   border-radius: var(--form-border-radius);
 }
 
 /* Contains a <label> and an <input> field. */
 div.input-container {
-  margin: 0.5rem auto;
-  max-width: 410px;
+  margin: 0.5em auto;
+  max-width: 26em;
   display: flex;
   justify-content: space-between;
 }
@@ -70,15 +69,18 @@ input {
   font-size: 1rem;
   padding: var(--input-padding);
   width: 60%;
-  max-width: 280px;
+  min-width: 12rem;
+  max-width: 18rem;
+  background-color: white;
   border: 1px solid lightgrey;
-  border-radius: 0.2em;
+  border-radius: 0.2rem;
 }
 
 input[type=submit] {
   display: block;
   padding: var(--button-padding);
-  max-width: 200px;
+  min-width: 10em;
+  max-width: 12em;
   margin: 1.2em auto;
   background-color: #E4F1FE;
   border: 1px solid grey;
@@ -88,6 +90,11 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: var(--background-yellow);
+}
+
+/* Keyboard and mouse focus for all elements. */
+:focus {
+  outline: medium dashed black;
 }
 
 code {
@@ -101,9 +108,10 @@ code {
 
 .code-block-container {
   background-color: var(--background-yellow);
-  padding: 0.2rem 0;
-  margin: 1rem 0;
+  padding: 0.2em 0;
+  margin: 1em 0;
   border-radius: var(--form-border-radius);
+  overflow: auto;
 }
 
 .code-block {
@@ -115,14 +123,40 @@ code {
 
 /*** Media Queries ***/
 
-@media (max-width: 425px) {
+@media (min-width: 80em) {
   html {
-    font-size: 14px;
+    font-size: 1.2em;
   }
 }
 
-@media (max-width: 370px) {
+@media (min-width: 100em) {
   html {
-    font-size: 12px;
+    font-size: 1.4em;
+  }
+}
+
+@media (min-width: 120em) {
+  html {
+    font-size: 1.6em;
+  }
+}
+
+@media (min-width: 140em) {
+  html {
+    font-size: 1.8em;
+  }
+}
+
+@media (min-width: 160em) {
+  html {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 32em) {
+  /* Single-column layout. */
+  div.input-container {
+    flex-direction: column;
+    align-items: center;
   }
 }

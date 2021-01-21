@@ -72,25 +72,25 @@ class AddExerciseForm extends React.Component {
         <p><code className='code-inline'>POST /api/exercise/add</code></p>
 
         <div className='input-container'>
-          <label for='add-uid'>UserID:</label>
+          <label htmlFor='add-uid'>UserID:</label>
           <input id='add-uid' name='userId' type="text" placeholder="userId*"
             required value={this.state.userId} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
-          <label for='desc'>Description:</label>
+          <label htmlFor='desc'>Description:</label>
           <input id='desc' name='description' type="text" placeholder="description*"
             required value={this.state.description} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
-          <label for='dur'>Duration:</label>
+          <label htmlFor='dur'>Duration:</label>
           <input id='dur' name='duration' type="number" placeholder="duration* (mins.)"
             required value={this.state.duration} onChange={this.handleChange} />
         </div>
 
         <div className='input-container'>
-          <label for='date'>Date:</label>
+          <label htmlFor='date'>Date:</label>
           <input id='date' name='date' type="date"
             value={this.state.date} onChange={this.handleChange} />
         </div>

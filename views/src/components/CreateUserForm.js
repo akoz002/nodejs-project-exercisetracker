@@ -60,7 +60,7 @@ class CreateUserForm extends React.Component {
         <p><code className='code-inline'>POST /api/exercise/new-user</code></p>
 
         <div className='input-container'>
-          <label for='uname'>Username:</label>
+          <label htmlFor='uname'>Username:</label>
           <input id='uname' type="text" placeholder="username*" required
             value={this.state.input} onChange={this.handleChange} />
         </div>
