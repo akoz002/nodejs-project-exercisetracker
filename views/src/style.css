@@ -111,6 +111,7 @@ code {
   padding: 0.2em 0;
   margin: 1em 0;
   border-radius: var(--form-border-radius);
+  max-height: 30em;
   overflow: auto;
 }
 
