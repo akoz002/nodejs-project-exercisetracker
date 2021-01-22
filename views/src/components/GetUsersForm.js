@@ -21,7 +21,7 @@ const GetUsersForm = ({
   }
   else if (allUsersArray) {
     allUsersInfo = (
-      <div className='code-block-container'>
+      <div tabIndex={0} className='code-block-container'>
         <JSONArrayCodeBlock array={allUsersArray} />
       </div>
     );

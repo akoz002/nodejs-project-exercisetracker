@@ -59,7 +59,7 @@ class GetExercisesForm extends React.Component {
     }
     else if (this.props.exerciseLog) {
       exerciseLog = (
-        <div className='code-block-container'>
+        <div tabIndex={0} className='code-block-container'>
           <JSONObjectCodeBlock object={this.props.exerciseLog} />
         </div>
       );
