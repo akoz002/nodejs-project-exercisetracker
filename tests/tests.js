@@ -8,12 +8,14 @@ const axios = require('axios');
 const queryString = require('querystring');
 require('dotenv').config();
 
+const APP_URL = process.env.APP_URL || 'http://localhost:3000/api/exercise/';
+
 /*
  * Validate creating a user.
  */
 
 const validateCreateUser = (username, duplicate = false) => axios.post(
-  process.env.APP_URL + 'new-user',
+  APP_URL + 'new-user',
   queryString.stringify({ username })
 )
 .then(res => {
@@ -42,7 +44,7 @@ const validateCreateUser = (username, duplicate = false) => axios.post(
 const validateAddExercise = (
   userId, { description, duration, date }, invalidUserId = false
 ) => axios.post(
-  process.env.APP_URL + 'add',
+  APP_URL + 'add',
   queryString.stringify({ userId, description, duration, date })
 )
 .then(res => {
@@ -83,7 +85,7 @@ const validateAddExercise = (
 const validateDeleteUser = (
   username, validateSuccess = true, validateFailure = false
 ) => axios({
-  url: process.env.APP_URL + 'delete-user',
+  url: APP_URL + 'delete-user',
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -110,7 +112,7 @@ const validateDeleteUser = (
  */
 
 const validateGetUsers = () => axios.get(
-  process.env.APP_URL + 'users'
+  APP_URL + 'users'
 )
 .then(res => {
   assert.strictEqual(res.status, 200);
@@ -132,7 +134,7 @@ const validateGetUsers = () => axios.get(
 const validateExerciseLog = (
   expectedUser, from, to, limit, expectedLog, invalidUserId = false
 ) => axios.get(
-  process.env.APP_URL + 'log',
+  APP_URL + 'log',
   { params: { userId: expectedUser._id, from, to, limit }}
 )
 .then(res => {
@@ -268,7 +270,7 @@ async function validateErrorCases() {
  */
 
 async function runTests() {
-  console.log(`Running tests on app URL: '${process.env.APP_URL}'\n`);
+  console.log(`Running tests on app URL: '${APP_URL}'\n`);
 
   // add users and exercises
   await addAndValidateUsers();

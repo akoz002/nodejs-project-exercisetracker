@@ -31,12 +31,14 @@ const User = mongoose.model('User', require('./schemas/userSchema'));
  * Connect to MongoDB.
  */
 
-mongoose.connect(process.env.DB_URI, {
+const DB_URI = process.env.DB_URI || 'mongodb://localhost/exercise-tracker';
+
+mongoose.connect(DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, function(err) {
   if (err) throw err;
-  console.log("Successfully connected to MongoDB URI: '%s'", process.env.DB_URI);
+  console.log("Successfully connected to MongoDB URI: '%s'", DB_URI);
 });
 
 /*
