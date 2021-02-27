@@ -84,8 +84,6 @@ As explained above you can also send requests directly to:
 
 #### Tests
 
-A set of basic tests can be found at `tests/tests.js`. The tests can be executed by running `npm test` from the root directory.
+A set of basic tests can be found at `tests/tests.js`. To execute the tests in a local environment, first start the server with `npm start`. Environment variable `DB_URI` is used by the app to locate the MongoDB database server. This defaults to a local database server at `mongodb://localhost/exercise-tracker`.
 
-The `.env` file contains two parameters for configuring the app and the tests. The `APP_URL` is used by the tests to locate the app server. The `DB_URI` is used by the app to locate the MongoDB database server. 
-
-By default the tests will run against the app deployed to the cloud (on Heroku as above), and the app will connect to the cloud database server (on MongoDB Atlas).
+Then to execute the tests run `npm test`. Environment variable `APP_URL` is used by the tests to locate the app server. This defaults to a local server at `http://localhost:3000/api/exercise/`. You can also define a local `.env` file with these parameters, and it will be read by the app.
